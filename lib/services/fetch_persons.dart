@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/persons_item.dart';
 
 Future<List<Persons>> fetchPersons() async {
-  var uri = Uri.parse('http://10.39.190.61:8000/audio/persons/');
+  var uri = Uri.parse('http://10.138.157.200:8000/audio/persons/');
   var response = await http.get(uri);
 
   if (response.statusCode == 200) {
