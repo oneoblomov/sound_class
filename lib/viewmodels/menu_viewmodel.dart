@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/menu_item.dart';
 import '../views/home_page.dart';
-import '../views/search_page.dart';
+import '../views/person_page.dart';
 
 class MenuViewModel extends ChangeNotifier {
   int _selectedIndex = 0;
   final List<MenuItem> _menuItems = [
     MenuItem(title: 'Home', icon: Icons.home),
-    MenuItem(title: 'Search', icon: Icons.search),
+    MenuItem(title: 'Person', icon: Icons.person_search),
   ];
 
   int get selectedIndex => _selectedIndex;
