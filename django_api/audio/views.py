@@ -1,5 +1,3 @@
-#python3 django_api/manage.py runserver 0.0.0.0:8000
-
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -52,9 +50,9 @@ def duygu_analizi_yap(metin):
     blob = TextBlob(metin)
     polarite = blob.sentiment.polarity
     
-    if polarite > 0:
+    if (polarite > 0):
         return 1
-    elif polarite < 0:
+    elif (polarite < 0):
         return -1
     else:
         return 0
@@ -140,29 +138,34 @@ class AudioFileUploadView(APIView):
             file_instance = file_serializer.save()
             file_url = request.build_absolute_uri(file_instance.file.url)
 
-            sort= "/home/kaplan/Desktop/SoundClass/myproject/"
-
-            #pd.concat([pd.read_csv(f"{sort}media/data.csv"),pd.DataFrame([f"{sort}{file_instance.file.url}"],columns=["name"])]).to_csv(f"{sort}media/data.csv",index=False)
-            #sumWav(pd.read_csv(f"{sort}media/data.csv"),sort)
+            sort= "/home/kaplan/Desktop/sound_class/django_api"
+            
+            train=f"{sort}{file_instance.file.url}"
+            test= "/home/kaplan/Downloads/cleaned2.wav"
             try:
-                #df = frekans(f"{sort}{file_instance.file.url}")
-                df = frekans("/home/kaplan/Downloads/cleaned2.wav")
+                df = frekans(train)
                 Person.objects.all().delete()
                 
                 print(df)
-                person = Person(name       = "Konu",
-                                mesaj      = " ".join([f"{x}" for x in konu_tespiti_tfidf(" ".join([f"{x}" for x in df["text"].values_host]))]),
-                                time_start=0,time=0,time_end=0,happy=0)
+                person = Person(
+                    name="Konu",
+                    mesaj=" ".join([f"{x}" for x in konu_tespiti_tfidf(" ".join([f"{x}" for x in df["text"].values_host]))]),
+                    time_start=0,
+                    time=0,
+                    time_end=0,
+                    happy=0
+                )
                 print(" ".join([f"{x}" for x in konu_tespiti_tfidf(" ".join([f"{x}" for x in df["text"].values_host]))]))
                 person.save()
                 for i in df.index:
-                    person = Person(name       = df["speaker"][i],
-                                    mesaj      = df["text"][i],
-                                    time_start = df["start"][i],
-                                    time       = (df["end"][i]-df["start"][i]),
-                                    time_end   = df["end"][i],
-                                    happy      = df["happy"][i]
-                                    )
+                    person = Person(
+                        name=df.loc[i, "speaker"],
+                        mesaj=df.loc[i, "text"],
+                        time_start=df.loc[i, "start"],
+                        time=(df.loc[i, "end"] - df.loc[i, "start"]),
+                        time_end=df.loc[i, "end"],
+                        happy=df.loc[i, "happy"]
+                    )
                     person.save()
             except Exception as e:
                 print(f"Hata Oldu: {e}")

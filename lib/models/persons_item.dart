@@ -38,12 +38,15 @@ class SpeakerStatistics {
   final int totalDuration;
   final int totalWords;
   final int totalPositiveMessages;
+  final int totalNeutralMessages;
   final int totalNegativeMessages;
+
   SpeakerStatistics({
     required this.name,
     required this.totalDuration,
     required this.totalWords,
     required this.totalPositiveMessages,
+    required this.totalNeutralMessages,
     required this.totalNegativeMessages,
   });
 }
@@ -87,6 +90,7 @@ PersonStatistics calculateStatistics(List<Persons> personsList) {
     }
 
     double duration = person.timeEnd - person.timeStart;
+    totalTalkDuration += duration.toInt(); // Toplam konuşma süresini hesapla
 
     int wordCount = person.mesaj.split(' ').length;
 
@@ -96,6 +100,7 @@ PersonStatistics calculateStatistics(List<Persons> personsList) {
         totalDuration: duration.toInt(),
         totalWords: wordCount,
         totalPositiveMessages: person.happy == 1 ? 1 : 0,
+        totalNeutralMessages: person.happy == 0 ? 1 : 0,
         totalNegativeMessages: person.happy == -1 ? 1 : 0,
       );
     } else {
@@ -106,6 +111,8 @@ PersonStatistics calculateStatistics(List<Persons> personsList) {
         totalWords: stats.totalWords + wordCount,
         totalPositiveMessages:
             stats.totalPositiveMessages + (person.happy == 1 ? 1 : 0),
+        totalNeutralMessages:
+            stats.totalNeutralMessages + (person.happy == 0 ? 1 : 0),
         totalNegativeMessages:
             stats.totalNegativeMessages + (person.happy == -1 ? 1 : 0),
       );

@@ -12,20 +12,20 @@ class HomePage extends StatefulWidget {
 
 class _ProfilePageState extends State<HomePage> {
   final Map<String, Color> speakerColors = {
-    "['SPEAKER_00']": Colors.blue,
-    "['SPEAKER_01']": Colors.lime,
-    "['SPEAKER_02']": Colors.cyan,
-    "['SPEAKER_03']": Colors.yellow,
-    "['SPEAKER_04']": Colors.purple,
-    "['SPEAKER_05']": Colors.orange,
-    "['SPEAKER_06']": Colors.teal,
-    "['SPEAKER_07']": Colors.brown
+    "['SPEAKER_00']": Colors.blueAccent, // Mavi tonları
+    "['SPEAKER_01']": Colors.orangeAccent, // Turuncu
+    "['SPEAKER_02']": Colors.greenAccent, // Yeşil
+    "['SPEAKER_03']": Colors.purpleAccent, // Mor
+    "['SPEAKER_04']": Colors.tealAccent, // Yeşil-mavi tonu
+    "['SPEAKER_05']": Colors.amberAccent, // Altın sarısı
+    "['SPEAKER_06']": Colors.redAccent, // Kırmızı
+    "['SPEAKER_07']": Colors.indigoAccent, // Lacivert
   };
 
   final Map<String, Color> happyColors = {
-    "-1": Colors.red,
-    "0": Colors.black,
-    "1": Colors.green,
+    "-1": Colors.redAccent, // Negatif, kırmızı
+    "0": Colors.grey, // Nötr, gri
+    "1": Colors.greenAccent, // Pozitif, yeşil
   };
 
   @override
