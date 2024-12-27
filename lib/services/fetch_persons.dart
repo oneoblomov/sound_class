@@ -8,7 +8,7 @@ Future<List<Persons>> fetchPersons() async {
 
   if (response.statusCode == 200) {
     List<dynamic> data = json.decode(response.body);
-    print('Fetched data: $data'); // JSON verilerini yazdır
+    print('Fetched data: $data');
     return data.map((json) => Persons.fromJson(json)).toList();
   } else {
     throw Exception('Failed to load persons');

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/persons_item.dart';
-import '../services/fetch_persons.dart'; // fetchPersons fonksiyonunu içe aktarın
+import '../services/fetch_persons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,21 +28,6 @@ class _ProfilePageState extends State<HomePage> {
     "1": Colors.green,
   };
 
-  Color getContrastingTextColor(Color backgroundColor) {
-    // Basit bir kontrast hesaplama
-    int d = 0;
-    double luminance = (0.299 * backgroundColor.red +
-            0.587 * backgroundColor.green +
-            0.114 * backgroundColor.blue) /
-        255;
-    if (luminance > 0.5) {
-      d = 0; // dark text
-    } else {
-      d = 255; // light text
-    }
-    return Color.fromARGB(backgroundColor.alpha, d, d, d);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,12 +47,12 @@ class _ProfilePageState extends State<HomePage> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 8, horizontal: 16), // Dış boşluklar
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(
                     color: speakerColors[snapshot.data![index].name] ??
                         Colors.grey,
-                    borderRadius: BorderRadius.circular(16), // Yuvarlak köşeler
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
                     title: Text(snapshot.data![index].name

@@ -1,9 +1,9 @@
 class Persons {
   late String name;
   late String mesaj;
-  late double timeStart; // double tipi
-  late double timeEnd; // double tipi
-  late int happy; // -1, 0, 1
+  late double timeStart;
+  late double timeEnd;
+  late int happy;
 
   Persons({
     required this.name,
@@ -20,8 +20,6 @@ class Persons {
     double timeEnd = json["time_end"] is String
         ? double.tryParse(json["time_end"]) ?? 0.0
         : json["time_end"].toDouble();
-    print(
-        'timeStart: $timeStart, timeEnd: $timeEnd'); // Debug için print ifadeleri
 
     return Persons(
       name: json["name"] ?? '',
@@ -37,11 +35,10 @@ class Persons {
 
 class SpeakerStatistics {
   final String name;
-  final int totalDuration; // Saniye cinsinden konuşma süresi
-  final int totalWords; // Toplam kelime sayısı
-  final int totalPositiveMessages; // Toplam olumlu mesaj sayısı
-  final int totalNegativeMessages; // Toplam olumsuz mesaj sayısı
-
+  final int totalDuration;
+  final int totalWords;
+  final int totalPositiveMessages;
+  final int totalNegativeMessages;
   SpeakerStatistics({
     required this.name,
     required this.totalDuration,
@@ -56,9 +53,8 @@ class PersonStatistics {
   final int totalPositiveMessages;
   final int totalNeutralMessages;
   final int totalNegativeMessages;
-  final int totalTalkDuration; // Saniye cinsinden
-  final List<SpeakerStatistics>
-      speakerStatistics; // Her konuşmacının istatistikleri
+  final int totalTalkDuration;
+  final List<SpeakerStatistics> speakerStatistics;
 
   PersonStatistics({
     required this.totalPersons,
@@ -76,15 +72,12 @@ PersonStatistics calculateStatistics(List<Persons> personsList) {
   int totalNegativeMessages = 0;
   int totalTalkDuration = 0;
 
-  // Benzersiz isimleri bulmak için bir set kullanın
   Set<String> uniqueNames = {};
   Map<String, SpeakerStatistics> speakerStatsMap = {};
 
   for (var person in personsList) {
-    // Benzersiz isimleri set'e ekleyin
     uniqueNames.add(person.name);
 
-    // Olumlu, nötr ve olumsuz mesaj sayısını kontrol et
     if (person.happy == 1) {
       totalPositiveMessages++;
     } else if (person.happy == 0) {
@@ -93,16 +86,10 @@ PersonStatistics calculateStatistics(List<Persons> personsList) {
       totalNegativeMessages++;
     }
 
-    // Konuşma süresi hesaplama
     double duration = person.timeEnd - person.timeStart;
-    print(
-        'timeStart: ${person.timeStart}, timeEnd: ${person.timeEnd}, duration: $duration'); // Debug için print ifadeleri
-    totalTalkDuration += duration.toInt();
 
-    // Kelime sayısını hesaplama
     int wordCount = person.mesaj.split(' ').length;
 
-    // Konuşmacı istatistiklerini güncelleme
     if (!speakerStatsMap.containsKey(person.name)) {
       speakerStatsMap[person.name] = SpeakerStatistics(
         name: person.name,

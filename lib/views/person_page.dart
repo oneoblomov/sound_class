@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/persons_item.dart';
-import '../services/fetch_persons.dart'; // fetchPersons fonksiyonunu içe aktarın
+import '../services/fetch_persons.dart';
 
 class SearchPage extends StatefulWidget {
   @override

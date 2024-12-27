@@ -1,3 +1,5 @@
+#python3 django_api/manage.py runserver 0.0.0.0:8000
+
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -20,7 +22,7 @@ import soundfile as sf
 import torch
 import torchaudio
 import cudf as pd
-
+import numpy as np
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
@@ -29,16 +31,16 @@ model_path = "/home/kaplan/Downloads/vosk-model-small-en-us-0.15"
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+def get_audio_histogram(file, start_time, end_time):
+    y, sr = librosa.load(file, sr=None, offset=start_time, duration=(end_time - start_time))
+    hist, bin_edges = np.histogram(y, bins=50, range=(-1.0, 1.0))
+    return hist.tolist() 
+
 def konu_tespiti_tfidf(metin, en_fazla=3):
-    # TF-IDF vektörizer nesnesini oluştur
     tfidf = TfidfVectorizer(stop_words='english')
-    # Metni dönüştür
     tfidf_matrix = tfidf.fit_transform([metin])
-    # Kelimeleri ve skorlarını çıkar
     skorlar = zip(tfidf.get_feature_names_out(), tfidf_matrix.toarray()[0])
-    # Skorları sırala ve en sık geçenleri döndür
     en_fazla_gecen = sorted(skorlar, key=lambda x: x[1], reverse=True)[:en_fazla]
-    
     
     return [kelime for kelime, _ in en_fazla_gecen]
 
@@ -84,10 +86,9 @@ def frekans(file):
     return sound(file)
 
 def sound(file):
-    waveform, sample_rate = torchaudio.load(file)
-    diarization = pipeline({"waveform": waveform, "sample_rate": sample_rate})
-
-    speak = []
+    waveform, sample_rate = torchaudio.load(file)  
+    diarization = pipeline({"waveform": waveform, "sample_rate": sample_rate})  
+    speak = []  
 
     for speech_turn, _, speaker in diarization.itertracks(yield_label=True):
         speak.append([[speaker], [speech_turn.start, speech_turn.end]])
@@ -96,19 +97,10 @@ def sound(file):
     speak[["start", "end"]] = pd.DataFrame(speak["time"].to_arrow().to_pylist(), index=speak.index)
     speak.drop(columns=["time"], inplace=True)
 
-    for i in speak.index:
-        if i== 0:
-            continue
-        if speak["speaker"][i-1]== speak["speaker"][i]:
-            speak["start"][i]= speak["start"][i-1]
-            speak.drop(i-1,inplace=True)
-    speak.reset_index(drop=True,inplace=True)
-
     model = Model(model_path)
     wf = wave.open(file, "rb")
     rec = KaldiRecognizer(model, wf.getframerate())
     rec.SetWords(True)
-
     results = []
     while True:
         data = wf.readframes(4000)
@@ -120,7 +112,7 @@ def sound(file):
     part_result = json.loads(rec.FinalResult())
     results.append(part_result)
 
-    text= []
+    text = []
     for i in results:
         try:
             for ii in i["result"]:
@@ -130,16 +122,16 @@ def sound(file):
 
     df_text = pd.DataFrame(text, columns=["word", "start", "end"])
 
-    speak.reset_index(drop=True, inplace=True)
-
-    df = pd.concat([speak, pd.DataFrame(columns=["text","happy"])], axis=1)
-
+    df = pd.concat([speak, pd.DataFrame(columns=["text", "happy", "histogram"])], axis=1)
     for i in speak.index:
         df_text_filtered = df_text[(df_text["start"] > speak["start"][i]) & (df_text["end"] < speak["end"][i])]
-        df["text"][i] = " ".join([f"{x}" for x in df_text_filtered["word"].values_host])
-        df["happy"][i]= duygu_analizi_yap(df["text"][i])
+        df.loc[i, "text"] = " ".join([f"{x}" for x in df_text_filtered["word"].values_host])
+        df.loc[i, "happy"] = duygu_analizi_yap(df.loc[i, "text"])
 
-    return df.drop(index=df[df["text"]==""].to_pandas().index).reset_index(drop=True)
+        histogram_data = get_audio_histogram(file, speak["start"][i], speak["end"][i])
+        df.loc[i, "histogram"] = json.dumps(histogram_data)  
+    
+    return df.drop(index=df[df["text"] == ""].to_pandas().index).reset_index(drop=True)
 
 class AudioFileUploadView(APIView):
     def post(self, request, *args, **kwargs):

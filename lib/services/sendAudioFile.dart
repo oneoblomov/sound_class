@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:http_parser/http_parser.dart';
 
 Future<void> sendAudioFile(String filePath) async {
-  var uri = Uri.parse('http://10.138.157.200:8000/audio/upload/');
+  var uri = Uri.parse('http://10.39.190.99:8000/audio/upload/');
   var request = http.MultipartRequest('POST', uri);
 
   var bytes = await File(filePath).readAsBytes();
