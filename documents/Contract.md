@@ -1,70 +1,69 @@
-_Sözleşme_
+# sound_class Kullanım ve Uyarlama Sözleşmesi
 
-**Taraflar**
+## 1.Taraflar
+
 Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 
-1. **Google** - Bundan sonra "Müşteri" olarak anılacaktır.
-2. **AI Software** - Bundan sonra "Geliştirici" olarak anılacaktır.
+- **Google** - Bundan sonra "Müşteri" olarak anılacaktır.
+- **AI Software** - Bundan sonra "Geliştirici" olarak anılacaktır.
 
-**Sözleşmenin Konusu**
-Bu sözleşme, "Sound_Class" isimli sesli komut tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
+**Sözleşmenin Konusu:** Bu sözleşme, "Sound_Class" isimli sesli komut tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
 
-**Projenin Amacı**
-Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme, ne söylediklerini metin formatında sunma ve söylenenlerin olumlu ya da olumsuz olduklarına dair duygu analizi yapmayı amaçlamaktadır.
+**Projenin Amacı:** Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme, ne söylediklerini metin formatında sunma ve söylenenlerin olumlu ya da olumsuz olduklarına dair duygu analizi yapmayı amaçlamaktadır.
 
-**Tanımlar**
+## 2.Tanımlar
 
 - **Platform**: Flutter tabanlı bir mobil uygulama ve Django tabanlı bir backend sunucusundan oluşan sistem.
 - **Mobil Uygulama**: Kullanıcıların sesli komutlarını kaydettiği Flutter tabanlı uygulama.
 - **Backend Sunucu**: Seslerin işlenip metne dönüştürüldüğü ve analiz edildiği Django tabanlı sunucu.
 
-**Kurulum ve Uygulama**
+## 3.Kurulum ve Uygulama
 
-1. **Geliştirme**: Geliştirici, platformu Flutter ve Django teknolojileri kullanarak geliştirecektir.
-2. **Kurulum**: Platform, müşterinin belirttiği ortamda çalışabilir hale getirilecektir.
-3. **Bakım ve Destek**:
-   - Sistem hatalarının giderilmesi.
-   - Performans iyileştirme ve optimizasyon.
-   - Teknik danışmanlık ve kullanıcı desteği hizmetleri.
+- **Geliştirme**: Geliştirici, platformu Flutter ve Django teknolojileri kullanarak geliştirecektir.
+- **Kurulum**: Platform, müşterinin belirttiği ortamda çalışabilir hale getirilecektir.
+- **Bakım ve Destek**:
+  - Sistem hatalarının giderilmesi.
+  - Performans iyileştirme ve optimizasyon.
+  - Teknik danışmanlık ve kullanıcı desteği hizmetleri.
 
-**Veri Transferleri**
+## 4.Veri Transferleri
 
 - Kullanıcı verileri sadece proje kapsamında kullanılacak ve üçüncü taraflarla paylaşılmayacaktır.
 - Platformdaki tüm veri işlemleri, müşterinin belirttiği gizlilik protokollerine uygun olarak yürütülecektir.
 
-**Eğitim**
+## 5.Eğitim
 
 - Geliştirici, müşteriye platformun kullanımı ile ilgili gerekli eğitimleri sağlayacaktır.
 
-**Teslimat**
+## 6.Teslimat
 
-1. Projenin tamamlanma tarihi taraflarca ayrıca belirlenerek bu sözleşmeye eklenir.
-2. Teslimat aşamalarında yapılacak testler ve geri bildirim süreci taraflarca birlikte yürütülecektir.
+- Projenin tamamlanma tarihi taraflarca ayrıca belirlenerek bu sözleşmeye eklenir.
+- Teslimat aşamalarında yapılacak testler ve geri bildirim süreci taraflarca birlikte yürütülecektir.
 
-**Destek ve Güvenlik**
+## 7.Destek ve Güvenlik
 
 - Geliştirici, platformun hata ve kesintisiz çalışmasını temin eder.
 - Kullanıcı verilerinin gizliliğini ve güvenliğini sağlamak için gerekli tüm teknik ve idari önlemleri alır.
 
-**Lisanslama**
+## 8.Lisanslama
 
 - Platformun kullanımı için gerekli tüm lisanslar sağlanacaktır.
 
-**Gizlilik**
+## 9.Gizlilik
 
 - Kullanıcı verileri sadece proje kapsamında kullanılacak ve üçüncü taraflarla paylaşılmayacaktır.
 - Platformdaki tüm veri işlemleri, müşterinin belirttiği gizlilik protokollerine uygun olarak yürütülecektir.
 
-**Sözleşme Bedeli ve Ödeme**
+## 10.Sözleşme Bedeli ve Ödeme
 
 - Projenin toplam maliyeti ve ödeme takvimi taraflarca ayrıca belirlenir.
 - İlk ödeme, sözleşmenin imzalanmasını takiben talep edilir.
 
-**Tebligat**
+### Tebligat
 
 - Taraflar arasındaki tüm yazışmalar ve bildirimler yazılı olarak yapılacaktır.
 
-**Uyuşmazlıkların Çözümü**
+### Uyuşmazlıkların Çözümü
 
 - Bu sözleşmeden doğan uyuşmazlıklar taraflar arasında çözülmeye çalışılacak; anlaşma sağlanamazsa yerel mahkemeler yetkili olacaktır.
 
