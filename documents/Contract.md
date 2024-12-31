@@ -7,7 +7,7 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 - **Google** - Bundan sonra "Müşteri" olarak anılacaktır.
 - **AI Software** - Bundan sonra "Geliştirici" olarak anılacaktır.
 
-**Sözleşmenin Konusu:** Bu sözleşme, "Sound_Class" isimli sesli komut tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
+**Sözleşmenin Konusu:** Bu sözleşme, "Sound_Class" isimli proje  sesten kişi tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
 
 **Projenin Amacı:** Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme, ne söylediklerini metin formatında sunma ve söylenenlerin olumlu ya da olumsuz olduklarına dair duygu analizi yapmayı amaçlamaktadır.
 
@@ -21,6 +21,11 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 
 - **Geliştirme**: Geliştirici, platformu Flutter ve Django teknolojileri kullanarak geliştirecektir.
 - **Kurulum**: Platform, müşterinin belirttiği ortamda çalışabilir hale getirilecektir.
+- **Sistem İhtiyaçları**:
+  - Mobil uygulama Android 10 ve üstü cihazlarda sorunsuz çalışabilecek.
+- **Sistem Kurulumu**:
+  - Sunucunun çalışması için gereken donanım ve yazılımlar müşteri tarafından sağlanacaktır.
+  - Geliştirici sunucu kurulum sürecinde müşteriye danışmanlık hizmeri verecektir.
 - **Bakım ve Destek**:
   - Sistem hatalarının giderilmesi.
   - Performans iyileştirme ve optimizasyon.
@@ -33,21 +38,25 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 
 ## 5.Eğitim
 
-- Geliştirici, müşteriye platformun kullanımı ile ilgili gerekli eğitimleri sağlayacaktır.
+- ***Sunucu görevlileri*** için dogrudan ayrıntılı eğitim verilecektir.
+- ***Kullanıcılar*** için uygulama içinde basit ve anlaşılır şekilde bilgi notları olacaktır.
 
 ## 6.Teslimat
 
-- Projenin tamamlanma tarihi taraflarca ayrıca belirlenerek bu sözleşmeye eklenir.
+- Projenin tamamlanma tarihi sözleşme imzalandıktan sonraraki 3 ay sonrasıdır.
 - Teslimat aşamalarında yapılacak testler ve geri bildirim süreci taraflarca birlikte yürütülecektir.
 
 ## 7.Destek ve Güvenlik
 
+- ***Destek Süresi*** proje tamamlandıktan sonraki 3 yılı kapsar.
+- ***Destek Kapsamı*** istenilen ek isterler en geç 3 ay içinde hazır olmak zorundadır. eğer sistem içinde öngörülmeyen bir hata oluşması durumunda 1 hafta içinde düzeltilmiş olması gerekir.
 - Geliştirici, platformun hata ve kesintisiz çalışmasını temin eder.
 - Kullanıcı verilerinin gizliliğini ve güvenliğini sağlamak için gerekli tüm teknik ve idari önlemleri alır.
 
 ## 8.Lisanslama
 
-- Platformun kullanımı için gerekli tüm lisanslar sağlanacaktır.
+- Platformun kullanımı için gerekli tüm lisanslar müşteri tarafından sağlanacaktır.
+- sound_class projesinin tüm hakları müşterinin olacaktır.
 
 ## 9.Gizlilik
 
