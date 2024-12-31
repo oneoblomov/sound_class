@@ -1,20 +1,55 @@
-name: Build
+name: Build and SonarQube Scan
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
+      # Kaynak kodun çekilmesi
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Daha iyi analiz için shallow clone devre dışı
+
+      # Flutter için ortamın hazırlanması
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      # Flutter bağımlılıklarının yüklenmesi
+      - name: Install Flutter dependencies
+        run: flutter pub get
+
+      # Flutter projesinin build edilmesi
+      - name: Build Flutter project
+        run: flutter build apk --release
+
+      # Django için Python ortamının hazırlanması
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # Django bağımlılıklarının yüklenmesi
+      - name: Install Django dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      # Django uygulamasının test edilmesi
+      - name: Run Django tests
+        run: python manage.py test
+
+      # SonarQube taraması
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
