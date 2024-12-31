@@ -1,0 +1,8 @@
+audio.tests.TestKonuTespitiTFIDF.test_konu_tespiti_tfidf
+false
+06a71ead592dafb2e2d3dc343f0dc215
+audio.views.konu_tespiti_tfidf
+builtins.len
+==
+assertEqual
+assertIn

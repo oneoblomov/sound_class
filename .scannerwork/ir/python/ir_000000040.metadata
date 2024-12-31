@@ -1,0 +1,9 @@
+audio.views.konu_tespiti_tfidf
+false
+80a7afde8e49ccf9a21c8c4ed8f23f9f
+sklearn.feature_extraction.text.TfidfVectorizer.__init__
+zip.__init__
+==
+fit_transform
+get_feature_names_out
+toarray
