@@ -1,0 +1,15 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml:1:1-44
+INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml:1:1-44
+	package
+		ADDED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml:1:11-42
+		INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml
+uses-sdk
+INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml
+INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/kaplan/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/android/src/main/AndroidManifest.xml

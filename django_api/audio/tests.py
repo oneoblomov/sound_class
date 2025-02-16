@@ -1,14 +1,16 @@
+#python manage.py test audio.tests
 import unittest
-import tempfile
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from audio.views import duygu_analizi_yap, konu_tespiti_tfidf, frekans
-
+# Set the DJANGO_SETTINGS_MODULE environment variable
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_api.settings')
+
 import django
 django.setup()
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from audio.views import duygu_analizi_yap, konu_tespiti_tfidf, frekans
 
 class TestDuyguAnaliziYap(unittest.TestCase):
     def test_duygu_analizi_yap(self):
@@ -32,18 +34,15 @@ class TestKonuTespitiTFIDF(unittest.TestCase):
 
 class TestFrekans(unittest.TestCase):
     def test_frekans(self):
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
-            temp_audio.write(b"Fake audio data")
-            temp_audio.seek(0)
-            temp_audio_path = temp_audio.name
+        # Update the path to a valid audio file
+        audio_file_path = '/home/kaplan/Desktop/sound_class/django_api/media/audio/audio.wav'
 
         try:
-            sonuc = frekans(temp_audio_path)
+            sonuc = frekans(audio_file_path)
             self.assertIsNotNone(sonuc)
         except Exception as e:
             self.fail(f"Frekans function failed with error: {e}")
-        finally:
-            os.remove(temp_audio_path)
+
 
 if __name__ == '__main__':
     unittest.main()

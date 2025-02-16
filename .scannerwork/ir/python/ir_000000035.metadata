@@ -1,7 +1,0 @@
-audio.tests.TestDuyguAnaliziYap.test_duygu_analizi_yap
-false
-deeefa481d91fb239c2969bd122ca557
-audio.views.duygu_analizi_yap
-==
-assertEqual
-assertIsNone

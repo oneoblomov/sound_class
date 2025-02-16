@@ -24,13 +24,23 @@ import numpy as np
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
-pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token="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").to(torch.device("cuda"))
+pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token="XXX").to(torch.device("cuda"))
 model_path = "/home/kaplan/Downloads/vosk-model-small-en-us-0.15"
 model = Model(model_path)
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def konu_tespiti_tfidf(metin, en_fazla=3):
+    """
+    TFIDF vektörleştirici kullanarak konu tespiti yapar.
+
+    Args:
+        metin (str): Analiz edilecek metin.
+        en_fazla (int): Döndürülecek maksimum konu sayısı.
+
+    Returns:
+        list: En sık geçen konuların listesi.
+    """
     tfidf = TfidfVectorizer(stop_words='english')
     tfidf_matrix = tfidf.fit_transform([metin])
     skorlar = zip(tfidf.get_feature_names_out(), tfidf_matrix.toarray()[0])
@@ -39,6 +49,15 @@ def konu_tespiti_tfidf(metin, en_fazla=3):
     return [kelime for kelime, _ in en_fazla_gecen]
 
 def duygu_analizi_yap(metin):
+    """
+    Verilen metin üzerinde duygu analizi yapar.
+
+    Args:
+        metin (str): Analiz edilecek metin.
+
+    Returns:
+        int: Pozitif duygu için 1, negatif duygu için -1, nötr duygu için 0, boş metin için None.
+    """
     if not metin:
         return None
     
@@ -53,6 +72,15 @@ def duygu_analizi_yap(metin):
         return 0
     
 def frekans(file):
+    """
+    Ses dosyasını normalize eder ve filtreler, ardından konuşmacı ayrımı ve duygu analizi yapar.
+
+    Args:
+        file (str): Ses dosyasının yolu.
+
+    Returns:
+        DataFrame: Konuşmacı bilgilerini ve duygu analizi sonuçlarını içeren bir DataFrame.
+    """
     y, sr = librosa.load(file, sr=None)
     
     new_sr = 16000
@@ -67,9 +95,17 @@ def frekans(file):
     
     filtered_audio.export(file, format="wav")
     
-    return sound(file)
-
+    return sound(file)    
 def sound(file):
+    """
+    Verilen ses dosyasında konuşmacı ayrımı ve duygu analizi yapar.
+
+    Args:
+        file (str): Ses dosyasının yolu.
+
+    Returns:
+        DataFrame: Konuşmacı bilgilerini ve duygu analizi sonuçlarını içeren bir DataFrame.
+    """
     waveform, sample_rate = torchaudio.load(file)  
     diarization = pipeline({"waveform": waveform, "sample_rate": sample_rate})  
     speak = []  
@@ -82,12 +118,12 @@ def sound(file):
     speak.drop(columns=["time"], inplace=True)
 
     for i in speak.index:
-        if i== 0:
+        if i == 0:
             continue
-        if speak["speaker"][i-1]== speak["speaker"][i]:
-            speak["start"][i]= speak["start"][i-1]
-            speak.drop(i-1,inplace=True)
-    speak.reset_index(drop=True,inplace=True)
+        if speak["speaker"][i-1] == speak["speaker"][i]:
+            speak["start"][i] = speak["start"][i-1]
+            speak.drop(i-1, inplace=True)
+    speak.reset_index(drop=True, inplace=True)
     
     wf = wave.open(file, "rb")
     rec = KaldiRecognizer(model, wf.getframerate())
@@ -122,19 +158,21 @@ def sound(file):
     return df.drop(index=df[df["text"] == ""].to_pandas().index).reset_index(drop=True)
 
 class AudioFileUploadView(APIView):
+    """
+    Ses dosyası yüklemelerini işlemek ve konuşmacı ayrımı ve duygu analizi yapmak için API görünümü.
+    """
     def post(self, request, *args, **kwargs):
         file_serializer = AudioFileSerializer(data=request.data)
         if file_serializer.is_valid():
             file_instance = file_serializer.save()
             file_url = request.build_absolute_uri(file_instance.file.url)
 
-            sort= "/home/kaplan/Desktop/sound_class/django_api"
+            sort = "/home/kaplan/Desktop/sound_class/django_api"
             
-            train=f"{sort}{file_instance.file.url}"
-            test= "/home/kaplan/Downloads/speech.wav"
+            train = f"{sort}{file_instance.file.url}"
             try:
                 frekans(train)
-                df= sound(train)
+                df = sound(train)
                 Person.objects.all().delete()
                 
                 print(df)
@@ -168,5 +206,8 @@ class AudioFileUploadView(APIView):
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PersonViewSet(viewsets.ModelViewSet):
+    """
+    Person nesnelerini görüntülemek ve düzenlemek için ViewSet.
+    """
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
