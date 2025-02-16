@@ -1,3 +1,5 @@
+#### Bu Contact örnek olarak hazırlanmıştır. Geçerliliği yoktur.
+
 # sound_class Kullanım ve Uyarlama Sözleşmesi
 
 ## 1.Taraflar
@@ -7,7 +9,7 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 - **Google** - Bundan sonra "Müşteri" olarak anılacaktır.
 - **AI Software** - Bundan sonra "Geliştirici" olarak anılacaktır.
 
-**Sözleşmenin Konusu:** Bu sözleşme, "Sound_Class" isimli proje  sesten kişi tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
+**Sözleşmenin Konusu:** Bu sözleşme, "Sound_Class" isimli proje sesten kişi tanıma, metne dönüştürme ve ses analizi platformunun geliştirilmesi, kurulumu ve bakımı ile ilgili olarak taraflar arasındaki hak ve yükümlülükleri düzenler.
 
 **Projenin Amacı:** Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme, ne söylediklerini metin formatında sunma ve söylenenlerin olumlu ya da olumsuz olduklarına dair duygu analizi yapmayı amaçlamaktadır.
 
@@ -38,8 +40,8 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 
 ## 5.Eğitim
 
-- ***Sunucu görevlileri*** için dogrudan ayrıntılı eğitim verilecektir.
-- ***Kullanıcılar*** için uygulama içinde basit ve anlaşılır şekilde bilgi notları olacaktır.
+- **_Sunucu görevlileri_** için dogrudan ayrıntılı eğitim verilecektir.
+- **_Kullanıcılar_** için uygulama içinde basit ve anlaşılır şekilde bilgi notları olacaktır.
 
 ## 6.Teslimat
 
@@ -48,8 +50,8 @@ Bu sözleşme, aşağıda belirtilen taraflar arasında yapılmıştır:
 
 ## 7.Destek ve Güvenlik
 
-- ***Destek Süresi*** proje tamamlandıktan sonraki 3 yılı kapsar.
-- ***Destek Kapsamı*** istenilen ek isterler en geç 3 ay içinde hazır olmak zorundadır. eğer sistem içinde öngörülmeyen bir hata oluşması durumunda 1 hafta içinde düzeltilmiş olması gerekir.
+- **_Destek Süresi_** proje tamamlandıktan sonraki 3 yılı kapsar.
+- **_Destek Kapsamı_** istenilen ek isterler en geç 3 ay içinde hazır olmak zorundadır. eğer sistem içinde öngörülmeyen bir hata oluşması durumunda 1 hafta içinde düzeltilmiş olması gerekir.
 - Geliştirici, platformun hata ve kesintisiz çalışmasını temin eder.
 - Kullanıcı verilerinin gizliliğini ve güvenliğini sağlamak için gerekli tüm teknik ve idari önlemleri alır.
 

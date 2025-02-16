@@ -25,7 +25,7 @@ torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
 pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token="XXX").to(torch.device("cuda"))
-model_path = "/home/kaplan/Downloads/vosk-model-small-en-us-0.15"
+model_path = "vosk-model-small-en-us-0.15"
 model = Model(model_path)
 
 from sklearn.feature_extraction.text import TfidfVectorizer
