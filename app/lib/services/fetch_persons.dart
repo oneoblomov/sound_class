@@ -4,7 +4,7 @@ import '../models/persons_item.dart';
 
 Future<List<Persons>> fetchPersons({http.Client? client}) async {
   client ??= http.Client();
-  var uri = Uri.parse('http://10.138.157.200:8000/audio/persons/');
+  var uri = Uri.parse('http://192.168.95.74:8000/audio/persons/');
   var response = await client.get(uri);
 
   if (response.statusCode == 200) {

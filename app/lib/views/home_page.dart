@@ -24,7 +24,7 @@ class _ProfilePageState extends State<HomePage> {
 
   final Map<String, Color> happyColors = {
     "-1": Colors.redAccent, // Negatif, kırmızı
-    "0": Colors.grey, // Nötr, gri
+    "0": Colors.black, // Nötr, gri
     "1": Colors.greenAccent, // Pozitif, yeşil
   };
 
@@ -61,7 +61,9 @@ class _ProfilePageState extends State<HomePage> {
                     subtitle: Text(
                       snapshot.data![index].mesaj,
                       style: TextStyle(
-                          color: happyColors[snapshot.data![index].happy]),
+                          color: happyColors[
+                                  snapshot.data![index].happy.toString()] ??
+                              Colors.black),
                     ),
                   ),
                 );
