@@ -24,10 +24,10 @@ Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme,
 ## Ekran Görüntüleri
 
 ### Ana Ekran
-![Ana Ekran](documents/Screenshot_1739687448.png)
-
-### Analiz Sonuçları Ekranı
-![Analiz Sonuçları Ekranı](documents/Screenshot_1739687451.png)
+<div style="display: flex; justify-content: space-around;">
+    <img src="documents/Screenshot_1739687448.png" alt="Ana Ekran" width="45%">
+    <img src="documents/Screenshot_1739687451.png" alt="Analiz Sonuçları Ekranı" width="45%">
+</div>
 ## Kurulum
 
 ### Backend ([Django](django_api))
