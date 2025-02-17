@@ -23,11 +23,11 @@ Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme,
 ```
 ## Ekran Görüntüleri
 
-### Ana Ekran
 <div style="display: flex; justify-content: space-around;">
     <img src="documents/Screenshot_1739687448.png" alt="Ana Ekran" width="45%">
     <img src="documents/Screenshot_1739687451.png" alt="Analiz Sonuçları Ekranı" width="45%">
 </div>
+
 ## Kurulum
 
 ### Backend ([Django](django_api))
@@ -36,7 +36,9 @@ Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme,
     ```sh
     pip install -r documents/requirements.txt
     ```
-    Not: Bu projede cudf kütüphanesini kullandım. Eğer pc'niz de kullanılamıyorsa pandas'ı kullanabilirsiniz Ama ek düzeltmeler gerekir.
+    * Bu projede `cudf` kütüphanesini kullandım. Eğer pc'niz de kullanılamıyorsa `pandas`'ı kullanabilirsiniz Ama ek düzeltmeler gerekir.
+    * [pyannote/speaker-diarization-3.1](django_api/audio/views.py#L27)'yı kullanmak için [huggingface](https://huggingface.co/)'den api kodu almanız gerekir.
+    * Sesten metne dönüştürme işlemleri için `vosk` kütüphanesi kullanıyorum eğer farklı dil veya model ile çalıştırmak istiyorsanız [Vosk'un web sayfasından](https://alphacephei.com/vosk/models) istediğiniz modeli indirip [burada](django_api/audio/views.py#L28) modelin path'ini düzeltmelisiniz.
 
 2. Veritabanı migrasyonlarını çalıştırın:
     ```sh
@@ -59,7 +61,9 @@ Bu proje, kullanıcı seslerinden bireylerin analizini yaparak kimlik belirleme,
     ```sh
     flutter run
     ```
-    Not: flutter içinde kullanmak için serverin IP'sini kullanın.
+    Not: flutter içinde kullanmak için serverin IP'sine göre düzenleyin.
+    * [Konum 1](./app/lib/services/fetch_persons.dart#L7)
+    * [Konum 2](app/lib/services/sendAudioFile.dart#L9)
 
 ## Kullanım
 
@@ -89,11 +93,7 @@ file
 
 ## Testler
 
-Test senaryoları 
-
-Test_Case.md
-
- dosyasında belirtilmiştir.
+Test senaryoları [Test_Case.md](documents/Test_Case.md) dosyasında belirtilmiştir.
 
 ## İletişim
 
